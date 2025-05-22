@@ -1,0 +1,19 @@
+.dashboard-container {
+  margin-left: 240px;
+  padding: 20px;
+}
+.add-book-btn {
+  padding: 15px 30px;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.book-explore {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}

@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <h1>All Books</h1>
+
+  <button class="add-book-btn">
+    📘 Add a New Book <span class="plus-icon">➕</span>
+  </button>
+
+  <h2>Book Explore</h2>
+  <div class="book-explore">
+    <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
+  </div>
+
+  <h2>Book List</h2>
+  <app-book-table [books]="books"></app-book-table>
+</div>
+

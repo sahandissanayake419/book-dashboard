@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-book-card',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './book-card.component.html',
-  styleUrl: './book-card.component.css'
+  styleUrls: ['./book-card.component.css']
 })
 export class BookCardComponent {
-
+  @Input() book: any;
 }
+
+
