@@ -1,0 +1,24 @@
+<div class="modal">
+  <div class="modal-content">
+    <button class="close-btn" (click)="onClose()">✕</button>
+    <h2>Add New Book</h2>
+
+    <label>ID (auto-generated)</label>
+    <input type="text" [value]="newBook.id" disabled />
+
+    <label>Title</label>
+    <input type="text" [(ngModel)]="newBook.title" />
+
+    <label>Author</label>
+    <input type="text" [(ngModel)]="newBook.author" />
+
+    <label>ISBN</label>
+    <input type="text" [(ngModel)]="newBook.isbn" />
+
+    <label>Publication Date</label>
+    <input type="date" [(ngModel)]="newBook.publicationDate" />
+
+    <button class="save-btn" (click)="onSave()">Save Book</button>
+  </div>
+</div>
+

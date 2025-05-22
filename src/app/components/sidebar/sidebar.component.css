@@ -19,10 +19,14 @@
 
 }
 .logo {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 30px;
+  display: flex;
+  align-items: center;  /*vertical loogo*/
+  gap: 10px;            
+  font-weight: 700;     
+  font-size: 1.25rem;   
+  color: #333;          
 }
+
 nav ul {
   list-style: none;
   padding: 0;
