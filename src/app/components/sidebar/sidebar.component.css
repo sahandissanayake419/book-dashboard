@@ -1,10 +1,21 @@
+.sidebar-container{
+  padding: 8px;
+
+}
+
 .sidebar{
-    width: 220px;
-    background-color: #2d3748;
-    color: white;
+    height: 100vh;         /* Full viewport height */
+    position: fixed;       /* Fix sidebar in place while scrolling */
+    width: 220px;          /* Your fixed width */
+    background-color:#FAFAFA;
+    border-radius: 12px;
+    color: black;
     height: 100vh;
     padding: 20px;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(65, 65, 65, 0.1);
 
 }
 .logo {

@@ -1,12 +1,69 @@
-.book-table {
-  width: 100%;
-  border-collapse: collapse;
+.table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  font-family: 'Manrope', sans-serif;
 }
-.book-table th,
-.book-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
 }
-.book-table th {
-  background-color: #eaeaea;
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #e11d48;
 }
+
+.table-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.table-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.table-row:hover {
+  background: #f9fafb;
+}
+
+.table-row.selected {
+  background: #fef2f2;
+}
+
+.table-row input[type="checkbox"] {
+  margin-right: 12px;
+}
+
+.cell {
+  padding: 0 12px;
+  color: #1f2937;
+  font-size: 14px;
+  border-left: 1px solid #e5e7eb;
+}
+
+.cell:first-child {
+  border-left: none;
+}
+
+.edit-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #3b82f6;
+}
+

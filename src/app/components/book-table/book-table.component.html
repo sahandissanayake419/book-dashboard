@@ -1,19 +1,29 @@
-<table class="book-table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>ISBN</th>
-      <th>Publication Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let book of books">
-      <td>{{ book.title }}</td>
-      <td>{{ book.author }}</td>
-      <td>{{ book.isbn }}</td>
-      <td>{{ book.publicationDate }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-container">
+  <div class="table-header">
+    <h2>All Books</h2>
+    <button class="delete-btn" (click)="deleteSelectedBooks()">
+      🗑️
+    </button>
+  </div>
+
+  <div class="table-list">
+    <div 
+      *ngFor="let book of books" 
+      class="table-row"
+      [class.selected]="selectedBooks.includes(book.id)"
+    >
+      <input 
+        type="checkbox" 
+        [checked]="selectedBooks.includes(book.id)"
+        (change)="toggleBookSelection(book.id)" 
+      />
+      <div class="cell title">{{ book.title }}</div>
+      <div class="cell author">{{ book.author }}</div>
+      <div class="cell isbn">{{ book.isbn }}</div>
+      <div class="cell date">{{ book.publicationDate}}</div>
+      <!-- <button class="edit-btn" (click)="editBook(book)">✏️</button> -->
+    </div>
+  </div>
+</div>
+
 

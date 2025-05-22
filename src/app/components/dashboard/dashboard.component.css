@@ -1,10 +1,11 @@
 .dashboard-container {
   margin-left: 240px;
-  padding: 20px;
+  padding-left: 40px;
+  
 }
 .add-book-btn {
   padding: 15px 30px;
-  background-color: #4a90e2;
+  background-color: #1F1F21;
   color: white;
   font-size: 16px;
   border: none;
