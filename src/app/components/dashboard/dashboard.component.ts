@@ -1,53 +1,53 @@
-import { Component } from '@angular/core';
+// src/app/components/dashboard/dashboard.component.ts
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookCardComponent } from '../book-card/book-card.component';
-import { BookTableComponent } from '../book-table/book-table.component';
 import { AddBookComponent } from '../add-book/add-book.component';
+import { BookTableComponent } from '../book-table/book-table.component';
+import { BookService } from 'src/app/services/book.service';
+import { Book } from 'src/app/models/book.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, BookCardComponent, BookTableComponent, AddBookComponent],
+  imports: [CommonModule, FormsModule, AddBookComponent, BookTableComponent],
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
-  books = [
-    { id: 1, title: 'Book One', author: 'Author A', isbn: '123456', publicationDate: '2020-01-01' },
-    { id: 2, title: 'Book Two', author: 'Author B', isbn: '789012', publicationDate: '2021-05-15' }
-  ];
-
+export class DashboardComponent implements OnInit {
+  books: Book[] = [];
   showAddForm = false;
-  showEditForm = false;
-  currentBook: any = null;
 
-  openAddForm() {
-    this.currentBook = null;
-    this.showAddForm = true;
-    this.showEditForm = false;
+  constructor(private bookService: BookService) {}
+
+  ngOnInit(): void {
+    this.loadBooks();
   }
 
-  openEditForm(book: any) {
-    this.currentBook = book;
-    this.showEditForm = true;
+  handleSave(book: Book) {
+  this.bookService.addBook(book).subscribe((newBook: Book) => {
+    this.books.push(newBook);
     this.showAddForm = false;
-  }
+  });
+}
 
-  addOrUpdateBook(book: any) {
-    const index = this.books.findIndex(b => b.id === book.id);
-    if (index !== -1) {
-      this.books[index] = book;
-    } else {
-      this.books.push(book);
-    }
-    this.showAddForm = false;
-    this.showEditForm = false;
-  }
+loadBooks() {
+  this.bookService.getBooks().subscribe((data: Book[]) => {
+    this.books = data;
+  });
+}
 
   closeForm() {
     this.showAddForm = false;
-    this.showEditForm = false;
+  }
+
+  handleEdit(book: Book) {
+    // Optional: open edit functionality
   }
 }
+
+
+
+
 
 

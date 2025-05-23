@@ -1,18 +1,30 @@
-<div class="popup-card">
-  <h3>{{ isEdit ? 'Edit Book' : 'Add Book' }}</h3>
-  
-  <input type="text" placeholder="Title" [(ngModel)]="model.title" />
-  <input type="text" placeholder="Author" [(ngModel)]="model.author" />
-  <input type="text" placeholder="ISBN" [(ngModel)]="model.isbn" />
-  <input type="date" [(ngModel)]="model.publicationDate" />
-  
-  <div class="buttons">
-    <button (click)="handleSave()">
-      {{ isEdit ? 'Save Changes' : 'Add Book' }}
+<!-- add-book.component.html -->
+<div class="modal-backdrop">
+  <div class="modal">
+    <button class="close-btn" (click)="onClose()">✕</button>
+    <h2>{{ isEdit ? 'Edit Book' : 'Add New Book' }}</h2>
+
+    <label>ID (auto-generated)</label>
+    <input type="text" [value]="newBook.id" disabled />
+
+    <label>Title</label>
+    <input type="text" [(ngModel)]="newBook.title" />
+
+    <label>Author</label>
+    <input type="text" [(ngModel)]="newBook.author" />
+
+    <label>ISBN</label>
+    <input type="text" [(ngModel)]="newBook.isbn" />
+
+    <label>Publication Date</label>
+    <input type="date" [(ngModel)]="newBook.publicationDate" />
+
+    <button class="save-btn" (click)="onSave()">
+      {{ isEdit ? 'Update Book' : 'Save Book' }}
     </button>
-    <button (click)="close.emit()">Cancel</button>
   </div>
 </div>
+
 
 
 

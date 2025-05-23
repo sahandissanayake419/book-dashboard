@@ -1,6 +1,8 @@
+// src/app/components/add-book/add-book.component.ts
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BookService, Book } from '../../services/book.service'; // adjust path if needed
 
 @Component({
   selector: 'app-add-book',
@@ -10,34 +12,55 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
-  @Input() book: any = null;
-  
-  @Output() save = new EventEmitter<any>();
+  @Input() book: Book | null = null;
+  @Input() isEdit = false;
+
+  @Output() save = new EventEmitter<Book>();
   @Output() close = new EventEmitter<void>();
 
-  isEdit = false;
-
-  model = {
-    id: '',
+  newBook: Book = {
+    id: 0,
     title: '',
     author: '',
     isbn: '',
     publicationDate: ''
   };
 
-  ngOnInit() {
-    if (this.book) {
-      this.isEdit = true;
-      this.model = { ...this.book };
+  constructor(private bookService: BookService) {}
+
+  ngOnInit(): void {
+    if (this.isEdit && this.book) {
+      this.newBook = { ...this.book };
     } else {
-      this.model.id = Date.now().toString(); // Generate new ID for new books
+      this.newBook.id = Math.floor(Math.random() * 10000); // or let backend assign
     }
   }
 
-  handleSave() {
-    this.save.emit(this.model);
+  onSave() {
+    if (this.isEdit) {
+      this.bookService.updateBook(this.newBook).subscribe({
+        next: (updated) => {
+          this.save.emit(updated);
+        },
+        error: (err) => console.error('Update failed:', err)
+      });
+    } else {
+      this.bookService.addBook(this.newBook).subscribe({
+        next: (created) => {
+          this.save.emit(created);
+        },
+        error: (err) => console.error('Add failed:', err)
+      });
+    }
+  }
+
+  onClose() {
+    this.close.emit();
   }
 }
+
+
+
 
 
 

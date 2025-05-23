@@ -1,17 +1,10 @@
 // src/app/app.config.ts
-import { provideHttpClient } from '@angular/common/http';
+import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { importProvidersFrom } from '@angular/core';
-
 import { routes } from './app.routes';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { BookCardComponent } from './components/book-card/book-card.component';
-import { BookTableComponent } from './components/book-table/book-table.component';
+import { provideHttpClient } from '@angular/common/http';
 
-export const appConfig = {
-  providers: [
-    provideHttpClient(),
-    provideRouter(routes),
-  ]
+export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes), provideHttpClient()],
 };
+

@@ -1,28 +1,23 @@
-
-
 <div class="dashboard-container">
   <h1>Welcome Human :)</h1>
 
-  <!-- Add Book Button -->
   <button class="add-book-button" (click)="showAddForm = true">
-    <img src="assets/icons/book 1.svg"  alt="Book" />
-    Add a New Book <span class="plus-icon">
-    <img src="assets/icons/Plus 1.svg"  alt="Book" /></span>
+    <img src="assets/icons/book 1.svg" alt="Book" />
+    Add a New Book
   </button>
 
-  <h2>Book Explore</h2>
-  <div class="book-explore">
-    <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
-  </div>
+<app-add-book
+  *ngIf="showAddForm"
+  (save)="handleSave($event)"
+  (close)="closeForm()"
+></app-add-book>
 
-  <h2>Book List</h2>
-  <app-book-table [books]="books" (edit)="openEditForm($event)"></app-book-table>
+<app-book-table
+  [books]="books"
+  (edit)="handleEdit($event)"
+></app-book-table>
 
-  <app-add-book
-    *ngIf="showAddForm || showEditForm"
-    [book]="currentBook"
-    [isEdit]="showEditForm"
-    (close)="closeForm()"
-    (save)="addOrUpdateBook($event)"
-  ></app-add-book>
+
 </div>
+
+
