@@ -4,6 +4,8 @@
   
 }
 .add-book-button {
+  display: flex;
+  align-items: center;
   padding: 15px 30px;
   background-color: #1F1F21;
   color: white;

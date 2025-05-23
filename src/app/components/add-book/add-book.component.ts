@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,23 +9,35 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './add-book.component.html',
   styleUrls: ['./add-book.component.css']
 })
-export class AddBookComponent {
-  @Output() close = new EventEmitter<void>();
+export class AddBookComponent implements OnInit {
+  @Input() book: any = null;
+  
   @Output() save = new EventEmitter<any>();
+  @Output() close = new EventEmitter<void>();
 
-  newBook = {
-    id: Math.floor(Math.random() * 10000),
+  isEdit = false;
+
+  model = {
+    id: '',
     title: '',
     author: '',
     isbn: '',
     publicationDate: ''
   };
 
-  onSave() {
-    this.save.emit(this.newBook);
+  ngOnInit() {
+    if (this.book) {
+      this.isEdit = true;
+      this.model = { ...this.book };
+    } else {
+      this.model.id = Date.now().toString(); // Generate new ID for new books
+    }
   }
 
-  onClose() {
-    this.close.emit();
+  handleSave() {
+    this.save.emit(this.model);
   }
 }
+
+
+

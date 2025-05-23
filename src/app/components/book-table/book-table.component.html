@@ -1,27 +1,36 @@
 <div class="table-container">
   <div class="table-header">
-    <h2>All Books</h2>
-    <button class="delete-btn" (click)="deleteSelectedBooks()">
+    <h3>Books</h3>
+    <button class="delete-btn" (click)="deleteSelectedBooks()" title="Delete selected">
       🗑️
     </button>
   </div>
 
-  <div class="table-list">
-    <div 
-      *ngFor="let book of books" 
+  <div class="table-body">
+    <div class="table-row header">
+      <div class="col col-checkbox"></div>
+      <div class="col">Title</div>
+      <div class="col">Author</div>
+      <div class="col">ISBN</div>
+      <div class="col">Published</div>
+      <div class="col col-actions">Actions</div>
+    </div>
+
+    <div
       class="table-row"
-      [class.selected]="selectedBooks.includes(book.id)"
+      *ngFor="let book of books"
     >
-      <input 
-        type="checkbox" 
-        [checked]="selectedBooks.includes(book.id)"
-        (change)="toggleBookSelection(book.id)" 
-      />
-      <div class="cell title">{{ book.title }}</div>
-      <div class="cell author">{{ book.author }}</div>
-      <div class="cell isbn">{{ book.isbn }}</div>
-      <div class="cell date">{{ book.publicationDate}}</div>
-      <!-- <button class="edit-btn" (click)="editBook(book)">✏️</button> -->
+      <div class="col col-checkbox">
+        <input type="checkbox" [checked]="selectedBooks.includes(book.id)" (change)="toggleSelection(book.id)" />
+      </div>
+      <div class="col">{{ book.title }}</div>
+      <div class="col">{{ book.author }}</div>
+      <div class="col">{{ book.isbn }}</div>
+      <div class="col">{{ book.publicationDate }}</div>
+      <div class="col col-actions">
+        <button (click)="triggerEdit(book)" title="Edit">✏️</button>
+
+      </div>
     </div>
   </div>
 </div>

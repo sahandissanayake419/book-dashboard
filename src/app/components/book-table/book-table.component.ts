@@ -1,34 +1,33 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-book-table',
+  standalone: true,
   templateUrl: './book-table.component.html',
   styleUrls: ['./book-table.component.css']
 })
 export class BookTableComponent {
-  @Input() books: any[] = []; // use 'any' type for now
+  @Input() books: any[] = [];
+  @Output() edit = new EventEmitter<any>();
 
   selectedBooks: number[] = [];
 
-  toggleBookSelection(bookId: number) {
-    if (this.selectedBooks.includes(bookId)) {
-      this.selectedBooks = this.selectedBooks.filter(id => id !== bookId);
-    } else {
-      this.selectedBooks.push(bookId);
-    }
+  toggleSelection(id: number) {
+    this.selectedBooks.includes(id)
+      ? this.selectedBooks = this.selectedBooks.filter(bookId => bookId !== id)
+      : this.selectedBooks.push(id);
   }
 
   deleteSelectedBooks() {
-    // Emit or call a service to delete them
-    console.log('Deleting books:', this.selectedBooks);
-    // You can implement actual deletion via @Output or service call
+    this.books = this.books.filter(book => !this.selectedBooks.includes(book.id));
+    this.selectedBooks = [];
   }
 
-  // editBook(book: Book) {
-  //   // Handle edit logic here (or emit to parent)
-  //   console.log('Editing book:', book);
-  // }
+  triggerEdit(book: any) {
+    this.edit.emit(book);
+  }
 }
+
+
 
 

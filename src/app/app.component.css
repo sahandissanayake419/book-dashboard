@@ -15,3 +15,7 @@ app-dashboard {
   padding: 24px; /* This adds spacing from the sidebar */
   background-color: #f9fafc;
 }
+
+.logo_sidebar{
+  padding-right: 32px;
+}
